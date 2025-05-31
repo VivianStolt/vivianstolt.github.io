@@ -1,0 +1,39 @@
+
+*/ Linkedin postaukset */
+.sk-post-media {
+    clip-path: polygon(calc(100% - 2em) 0, 100% 3em, 100% 100%, calc(100% - 16.5em) 100%, calc(100% - 18.5em) 80%, 0 80%, 0 0) !important;
+    height: 11em;
+    margin: 0px !important;
+}
+
+.sk-post-header {
+    order: 2;
+}
+.sk-post-body.sk-scrollhover {
+    order: 1;
+    margin: 0px !important;
+    overflow-wrap: unset !important;
+    container-type: unset !important;
+}
+
+.sk-post-footer {
+    display: none !important;
+}
+
+.sk-post-body-short {
+    order: 2;
+}
+.sk-post-item {
+    width: calc(100% / 4 - 50px) !important;
+    padding: 0px !important;
+    position: unset !important;
+    top: unset !important;
+    left: unset !important;
+}
+.sk-posts-masonry {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 50px;
+}
+
+*/ Linkedin postaukset */
