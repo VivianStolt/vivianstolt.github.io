@@ -29,6 +29,10 @@ body .sk-ww-linkedin-profile-post .sk-post-userinfo {
 	height: 0px;
 }
 
+body .sk-ww-linkedin-profile-post * {
+	font-family: karla;
+}
+
 body .sk-ww-linkedin-profile-post .sk-post-username {
     opacity: 0;
 }
