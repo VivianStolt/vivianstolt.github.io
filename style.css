@@ -7,6 +7,14 @@ body .sk-ww-linkedin-profile-post .sk-post-media {
 }
 
 
+
+body .sk-ww-linkedin-profile-post .sk-post-media.--video {
+aspect-ratio: unset !important;
+}
+
+     
+
+
 .sk-post-image-wrapper.--thirds {
     max-height: fit-content;
 }
