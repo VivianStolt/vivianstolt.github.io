@@ -43,10 +43,12 @@ body .sk-ww-linkedin-profile-post .sk-posts-masonry .sk-post-item {
 
 .sk-post-body-short {
     order: 2;
+    padding: 24px;
 }
 
 .sk-post-body-full {
     order: 2;
+    padding: 24px;
 }
 .sk-post-item {
     width: calc(100% / 4 - 50px) !important;
