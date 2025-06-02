@@ -6,6 +6,7 @@
 body {
     max-width: 1200px;
     justify-self: center;
+    background-color: #00122C;
 }
 
 /* Linkedin postaukset */
@@ -40,6 +41,7 @@ body .sk-ww-linkedin-profile-post .sk-post-userinfo {
 
 body .sk-ww-linkedin-profile-post * {
 	font-family: karla;
+	color: rgba(183, 221, 251, 0.8);
 }
 
 body .sk-ww-linkedin-profile-post .sk-post-username {
@@ -60,12 +62,14 @@ body .sk-ww-linkedin-profile-post .sk-posts-masonry .sk-post-item {
     min-width: 220px;
     flex: 0 0 auto;
     width: calc(100% / 3 - 2.6em) !important;
+    background: rgba(0, 18, 44, 0.0);
 }     
 body .sk-ww-linkedin-profile-post .sk-post-dateposted {
     font-size: 16px;
     line-height: 37px !important;
     letter-spacing: 0em !important;
     font-family: 'Karla' !important;
+    color: rgba(183, 221, 251, 0.8);
 }
 
 body .sk-ww-linkedin-profile-post .sk-posts-header {
