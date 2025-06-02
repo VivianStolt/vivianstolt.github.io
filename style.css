@@ -13,6 +13,10 @@ body .sk-ww-linkedin-profile-post .sk-post-userinfo {
     left: 22px;
 }
 
+body .sk-ww-linkedin-profile-post .sk-post-username {
+    opacity: 0;
+}
+
 body .sk-ww-linkedin-profile-post .sk-post-media.--video {
 aspect-ratio: unset !important;
 }
