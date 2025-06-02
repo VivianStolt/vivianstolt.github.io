@@ -4,6 +4,7 @@ body .sk-ww-linkedin-profile-post .sk-post-media {
     clip-path: polygon(calc(100% - 2em) 0, 100% 3em, 100% 100%, 5.5em 100%, 4em 85%, 0 85%, 0 0) !important;
     height: 15em;
     margin: 0px !important;
+    border-radius: 0 !important;
 }
 
 
@@ -12,7 +13,11 @@ body .sk-ww-linkedin-profile-post .sk-post-media.--video {
 aspect-ratio: unset !important;
 }
 
-     
+body .sk-ww-linkedin-profile-post .sk-posts-masonry .sk-post-item {
+    height: fit-content !important;
+    -webkit-box-shadow: unset !important;
+    border-radius: unset !important;
+}     
 
 
 .sk-post-image-wrapper.--thirds {
@@ -34,6 +39,10 @@ aspect-ratio: unset !important;
 }
 
 .sk-post-body-short {
+    order: 2;
+}
+
+.sk-post-body-full {
     order: 2;
 }
 .sk-post-item {
