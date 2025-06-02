@@ -1,7 +1,7 @@
 
 /* Linkedin postaukset */
 body .sk-ww-linkedin-profile-post .sk-post-media {
-    clip-path: polygon(calc(100% - 2em) 0, 100% 3em, 100% 100%, 5.5em 100%, calc(100% - 13.5em) 85%, 0 85%, 0 0) !important;
+    clip-path: polygon(calc(100% - 2em) 0, 100% 3em, 100% 100%, 5.5em 100%, 4.5em 85%, 0 85%, 0 0) !important;
     height: 15em;
     margin: 0px !important;
 }
