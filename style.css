@@ -45,7 +45,7 @@ aspect-ratio: unset !important;
 }
 
 body .sk-ww-linkedin-profile-post .sk-posts-masonry .sk-post-item {
-    height: 100% !important;
+
     -webkit-box-shadow: unset !important;
     border-radius: unset !important;
     min-width: 220px;
