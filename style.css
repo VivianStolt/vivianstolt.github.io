@@ -59,7 +59,7 @@ body .sk-ww-linkedin-profile-post .sk-posts-masonry .sk-post-item {
     border-radius: unset !important;
     min-width: 220px;
     flex: 0 0 auto;
-    width: calc(100% / 3 - 2em) !important;
+    width: calc(100% / 3 - 2.6em) !important;
 }     
 body .sk-ww-linkedin-profile-post .sk-post-dateposted {
     font-size: 16px;
