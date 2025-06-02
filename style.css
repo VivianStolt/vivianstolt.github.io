@@ -62,7 +62,7 @@ body .sk-ww-linkedin-profile-post .sk-posts-header {
 }
 
 .sk-posts-masonry {
-    height: 540px !important;
+    height: 460px !important;
     gap: 2em !important;
     transition: transform 0.5s ease;
 }
