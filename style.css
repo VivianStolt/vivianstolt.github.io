@@ -7,7 +7,11 @@ body .sk-ww-linkedin-profile-post .sk-post-media {
     border-radius: 0 !important;
 }
 
-
+body .sk-ww-linkedin-profile-post .sk-post-userinfo {
+    top: 195px;
+    position: relative;
+    left: 22px;
+}
 
 body .sk-ww-linkedin-profile-post .sk-post-media.--video {
 aspect-ratio: unset !important;
@@ -18,6 +22,12 @@ body .sk-ww-linkedin-profile-post .sk-posts-masonry .sk-post-item {
     -webkit-box-shadow: unset !important;
     border-radius: unset !important;
 }     
+body .sk-ww-linkedin-profile-post .sk-post-dateposted {
+    font-size: 32px;
+    line-height: 37px !important;
+    letter-spacing: -0.5em !important;
+    font-family: karla !important;
+}
 
 .sk-posts-masonry {
     height: fit-content !important;
