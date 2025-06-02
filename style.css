@@ -1,5 +1,6 @@
 :root {
   --font-family: 'Karla', sans-serif;
+  --line-height: 1.3em;
 }
 
 /* Linkedin postaukset */
@@ -18,6 +19,9 @@ body .sk-ww-linkedin-profile-post .sk-post-userinfo {
 
 body .sk-ww-linkedin-profile-post .sk-post-username {
     opacity: 0;
+}
+body .sk-ww-linkedin-profile-post * {
+    line-height: var(--line-height);
 }
 
 body .sk-ww-linkedin-profile-post .sk-post-media.--video {
