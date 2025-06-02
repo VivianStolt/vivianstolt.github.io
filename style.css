@@ -43,7 +43,7 @@ body .sk-ww-linkedin-profile-post .sk-posts-header {
 
 .sk-posts-masonry {
     height: fit-content !important;
-    gap: 2em;
+    gap: 2em !important;
 }
 .sk-post-userpic {
     display: none !important;
