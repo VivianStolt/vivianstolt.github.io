@@ -37,6 +37,10 @@ body .sk-ww-linkedin-profile-post .sk-post-dateposted {
     font-family: 'Karla' !important;
 }
 
+body .sk-ww-linkedin-profile-post .sk-posts-header {
+    display: none;
+}
+
 .sk-posts-masonry {
     height: fit-content !important;
     gap: 2em;
