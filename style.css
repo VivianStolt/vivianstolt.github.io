@@ -5,6 +5,7 @@
 
 body {
     max-width: 1200px;
+    justify-self: center;
 }
 
 /* Linkedin postaukset */
@@ -13,6 +14,10 @@ body .sk-ww-linkedin-profile-post .sk-post-media {
     height: 15em;
     margin: 0px !important;
     border-radius: 0 !important;
+    width: 100%;
+}
+body .sk-ww-linkedin-profile-post .sk-posts-body {
+    margin: 2rem 0;
     width: 100%;
 }
 
@@ -53,7 +58,8 @@ body .sk-ww-linkedin-profile-post .sk-posts-masonry .sk-post-item {
     -webkit-box-shadow: unset !important;
     border-radius: unset !important;
     min-width: 220px;
-    flex: 1;
+    flex: 0 0 auto;
+    width: calc(100% / 3 - 2em) !important;
 }     
 body .sk-ww-linkedin-profile-post .sk-post-dateposted {
     font-size: 16px;
