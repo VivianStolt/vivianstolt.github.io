@@ -23,6 +23,11 @@ body .sk-ww-linkedin-profile-post .sk-post-userinfo {
     position: relative;
     left: 22px;
 }
+.sk_branding {
+	display: none !important;
+	visibility: hidden;
+	height: 0px;
+}
 
 body .sk-ww-linkedin-profile-post .sk-post-username {
     opacity: 0;
