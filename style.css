@@ -48,6 +48,7 @@ body .sk-ww-linkedin-profile-post .sk-posts-header {
 .sk-posts-masonry {
     height: fit-content !important;
     gap: 2em !important;
+    transition: transform 0.5s ease;
 }
 .sk-post-userpic {
     display: none !important;
