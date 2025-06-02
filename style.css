@@ -1,6 +1,6 @@
 
 */ Linkedin postaukset */
-.sk-post-media {
+body .sk-ww-linkedin-profile-post .sk-post-media {
     clip-path: polygon(calc(100% - 2em) 0, 100% 3em, 100% 100%, calc(100% - 16.5em) 100%, calc(100% - 18.5em) 80%, 0 80%, 0 0) !important;
     height: 11em;
     margin: 0px !important;
