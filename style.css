@@ -79,6 +79,11 @@ body .sk-ww-linkedin-profile-post .sk-posts-header {
     container-type: unset !important;
 }
 
+body .sk-scrollhover {
+	overflow-y: unset !important;
+	scrollbar-gutter: unset !important;
+}
+
 .sk-post-footer {
     display: none !important;
 }
