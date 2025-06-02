@@ -1,3 +1,6 @@
+:root {
+  --font-family: 'Karla', sans-serif;
+}
 
 /* Linkedin postaukset */
 body .sk-ww-linkedin-profile-post .sk-post-media {
@@ -25,6 +28,7 @@ body .sk-ww-linkedin-profile-post .sk-posts-masonry .sk-post-item {
     height: fit-content !important;
     -webkit-box-shadow: unset !important;
     border-radius: unset !important;
+    min-width: 220px;
 }     
 body .sk-ww-linkedin-profile-post .sk-post-dateposted {
     font-size: 16px;
@@ -35,6 +39,7 @@ body .sk-ww-linkedin-profile-post .sk-post-dateposted {
 
 .sk-posts-masonry {
     height: fit-content !important;
+    gap: 2em;
 }
 .sk-post-userpic {
     display: none !important;
