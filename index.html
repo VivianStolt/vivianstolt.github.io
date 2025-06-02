@@ -61,7 +61,53 @@
     }
   });
 </script>
-<script src="karuselli.js"></script>
+<script>
+  const track = document.querySelector('.sk-posts-masonry');
+  const container = document.querySelector('.sk-posts-body');
+  const nextBtn = document.getElementById('nextBtn');
+  const prevBtn = document.getElementById('prevBtn');
+  const items = document.querySelectorAll('.sk-post-item');
+
+  const cardWidth = 360 + 30; // kortin leveys + väli
+  const cardsVisible = Math.floor(container.offsetWidth / cardWidth);
+  const totalCards = items.length;
+
+  let currentIndex = 0;
+
+  const updateButtons = () => {
+    const maxIndex = Math.ceil(totalCards / cardsVisible) - 1;
+    prevBtn.style.display = currentIndex === 0 ? 'none' : 'inline-block';
+    nextBtn.style.display = currentIndex >= maxIndex ? 'none' : 'inline-block';
+  };
+
+  const moveCarousel = () => {
+    const moveX = currentIndex * cardWidth * cardsVisible;
+    track.style.transform = `translateX(-${moveX}px)`;
+    updateButtons();
+  };
+
+  nextBtn.addEventListener('click', () => {
+    const maxIndex = Math.ceil(totalCards / cardsVisible) - 1;
+    if (currentIndex < maxIndex) {
+      currentIndex++;
+      moveCarousel();
+    }
+  });
+
+  prevBtn.addEventListener('click', () => {
+    if (currentIndex > 0) {
+      currentIndex--;
+      moveCarousel();
+    }
+  });
+
+  window.addEventListener('resize', () => {
+    // Päivitä korttimäärä näkyvyyden mukaan uudelleen
+    moveCarousel();
+  });
+
+  updateButtons();
+</script>
   </body>
 
 </html>
