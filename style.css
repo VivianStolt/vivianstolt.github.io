@@ -27,10 +27,10 @@ body .sk-ww-linkedin-profile-post .sk-posts-masonry .sk-post-item {
     border-radius: unset !important;
 }     
 body .sk-ww-linkedin-profile-post .sk-post-dateposted {
-    font-size: 32px;
+    font-size: 16px;
     line-height: 37px !important;
-    letter-spacing: -0.5em !important;
-    font-family: karla !important;
+    letter-spacing: 0em !important;
+    font-family: 'Karla' !important;
 }
 
 .sk-posts-masonry {
