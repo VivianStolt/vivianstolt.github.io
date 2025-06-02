@@ -5,6 +5,15 @@ body .sk-ww-linkedin-profile-post .sk-post-media {
     height: 11em;
     margin: 0px !important;
 }
+body .sk-ww-linkedin-profile-post .sk-post-media.--video {
+        aspect-ratio: 11 / 9 !important;
+        justify-self: center;
+        height: 100% !important;
+}
+
+.sk-post-image-wrapper.--thirds {
+    max-height: fit-content;
+}
 
 .sk-post-header {
     order: 2;
