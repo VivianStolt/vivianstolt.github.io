@@ -67,6 +67,7 @@ body .sk-ww-linkedin-profile-post .sk-posts-header {
     gap: 2em !important;
     transition: transform 0.5s ease;
     align-items: stretch;
+    flex-wrap: nowrap !important;
 }
 .sk-post-userpic {
     display: none !important;
