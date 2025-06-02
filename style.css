@@ -16,7 +16,7 @@ aspect-ratio: unset !important;
 
 
 .sk-post-image-wrapper.--thirds {
-    max-height: fit-content;
+    max-height: fit-content !important;
 }
 
 .sk-post-header {
