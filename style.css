@@ -19,6 +19,9 @@ body .sk-ww-linkedin-profile-post .sk-posts-masonry .sk-post-item {
     border-radius: unset !important;
 }     
 
+.sk-posts-masonry {
+    height: fit-content !important;
+}
 
 .sk-post-image-wrapper.--thirds {
     max-height: fit-content !important;
