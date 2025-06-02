@@ -62,7 +62,7 @@ body .sk-ww-linkedin-profile-post .sk-posts-header {
     display: none;
 }
 
-.sk-posts-masonry {
+body .sk-ww-linkedin-profile-post .sk-posts-masonry {
     height: unset !important;
     gap: 2em !important;
     transition: transform 0.5s ease;
