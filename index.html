@@ -16,28 +16,35 @@
   </head>
 
   <body>
-    <div class='outter-box'>
-      <div class='sk-ww-linkedin-profile-post' data-embed-id='25562687'></div><script src='https://widgets.sociablekit.com/linkedin-profile-posts/widget.js' defer></script>
-      
-      <div class="carousel-controls">
-        <button id="prevBtn">←</button>
-        <button id="nextBtn">→</button>
+    <!-- LinkedIn Posts Carousel -->
+    <div class="carousel-container">
+      <h2>Uusimmat LinkedIn-postaukset</h2>
+      <div class="carousel-wrapper">
+        <button class="carousel-btn carousel-btn-prev" id="prevBtn">‹</button>
+        <div class="carousel-track-container">
+          <div class="carousel-track" id="carouselTrack">
+            <!-- Posts will be loaded here dynamically -->
+          </div>
+        </div>
+        <button class="carousel-btn carousel-btn-next" id="nextBtn">›</button>
+      </div>
+      <div class="carousel-dots" id="carouselDots">
+        <!-- Dots will be generated dynamically -->
       </div>
     </div>
+
     <form id="my-form">
-  <label for="name">Nimi:</label>
-  <input type="text" name="name" id="name" required>
+      <label for="name">Nimi:</label>
+      <input type="text" name="name" id="name" required>
 
-  <label for="email">Sähköposti:</label>
-  <input type="email" name="email" id="email" required>
+      <label for="email">Sähköposti:</label>
+      <input type="email" name="email" id="email" required>
 
-  <label for="message">Viesti:</label>
-  <textarea name="message" id="message" required></textarea>
+      <label for="message">Viesti:</label>
+      <textarea name="message" id="message" required></textarea>
 
-  <button type="submit">Lähetä</button>
-</form>
-
-<div id="status"></div>
+      <button type="submit">Lähetä</button>
+    </form>
 
 <script>
   const form = document.getElementById("my-form");
@@ -47,7 +54,7 @@
     e.preventDefault(); // Estetään lomakkeen normaali lähetys
     const data = new FormData(form);
 
-    const response = await fetch("https://formspree.io/f/mdkznpbz", { // <- korvaa omalla lomakelinkilläsi
+    const response = await fetch("https://formspree.io/f/mdkznpbz", { 
       method: "POST",
       body: data,
       headers: {
@@ -63,64 +70,8 @@
     }
   });
 </script>
-<script>
-  const observer = new MutationObserver(() => {
-    const track = document.querySelector('.sk-posts-masonry');
-    const container = document.querySelector('.sk-posts-body');
-    const items = document.querySelectorAll('.sk-post-item');
 
-    if (track && container && items.length > 0) {
-      initCarousel(track, container, items); // Käynnistä karuselli
-      observer.disconnect(); // Lopeta tarkkailu
-    }
-  });
-
-  observer.observe(document.body, {
-    childList: true,
-    subtree: true
-  });
-
-  function initCarousel(track, container, items) {
-    const nextBtn = document.getElementById('nextBtn');
-    const prevBtn = document.getElementById('prevBtn');
-
-    const cardWidth = 360 + 30;
-    const cardsVisible = Math.floor(container.offsetWidth / cardWidth);
-    const totalCards = items.length;
-    let currentIndex = 0;
-
-    const updateButtons = () => {
-      const maxIndex = Math.ceil(totalCards / cardsVisible) - 1;
-      prevBtn.style.display = currentIndex === 0 ? 'none' : 'inline-block';
-      nextBtn.style.display = currentIndex >= maxIndex ? 'none' : 'inline-block';
-    };
-
-    const moveCarousel = () => {
-      const moveX = currentIndex * cardWidth * cardsVisible;
-      track.style.transform = `translateX(-${moveX}px)`;
-      updateButtons();
-    };
-
-    nextBtn.addEventListener('click', () => {
-      const maxIndex = Math.ceil(totalCards / cardsVisible) - 1;
-      if (currentIndex < maxIndex) {
-        currentIndex++;
-        moveCarousel();
-      }
-    });
-
-    prevBtn.addEventListener('click', () => {
-      if (currentIndex > 0) {
-        currentIndex--;
-        moveCarousel();
-      }
-    });
-
-    window.addEventListener('resize', moveCarousel);
-    updateButtons();
-  }
-</script>
-
+<script src="karuselli.js"></script>
   </body>
 
 </html>
