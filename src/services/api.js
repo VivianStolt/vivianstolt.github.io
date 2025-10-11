@@ -1,20 +1,7 @@
 // Services for handling API calls and data processing
 export const postService = {
+  // Load posts only from local files. Backend API removed for GitHub Pages deployment.
   async fetchPosts() {
-    try {
-      // First try to get posts from API
-      const response = await fetch('/api/posts');
-      if (response.ok) {
-        const data = await response.json();
-        if (data.success && data.posts.length > 0) {
-          return data.posts;
-        }
-      }
-    } catch (error) {
-      console.warn('API posts not available, falling back to local files:', error);
-    }
-
-    // Fallback to loading local post files
     return await this.loadLocalPosts();
   },
 
