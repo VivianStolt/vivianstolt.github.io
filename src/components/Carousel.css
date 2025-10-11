@@ -1,0 +1,233 @@
+/* Carousel Component Styles */
+.carousel-container {
+  margin: 40px 0;
+  border-radius: var(--keski-border-radius, 0.5rem);
+}
+
+.carousel-title {
+  color: var(--vaalea-sininen, #EEF3FB);
+  font-family: var(--font-family, 'Karla', sans-serif);
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 2em;
+  font-weight: 300;
+}
+
+.carousel-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.carousel-track-container {
+  overflow: hidden;
+  flex: 1;
+  border-radius: var(--keski-border-radius, 0.5rem);
+  /* Remove fixed height: use intrinsic sizing via aspect-ratio on the post cards so height scales with width */
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.3s ease;
+  gap: 20px;
+  padding: var(--padding-pieni, 0.5rem);
+  align-items: flex-start; /* let each slide size itself based on content (post-card aspect-ratio) */
+}
+
+.carousel-slide {
+  flex: 0 0 calc(33.333% - 14px);
+  min-width: 0;
+  display: flex;
+  align-items: center; /* center the card vertically in case of slight differences */
+  justify-content: center;
+}
+
+.tilt-wrapper {
+  transform-style: preserve-3d;
+  width: 100%;
+  height: auto; /* let the post-card define the height via aspect-ratio */
+  display: block;
+}
+
+.post-card {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: var(--keski-border-radius, 0.5rem);
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  width: 100%;
+  /* Make card height scale with its width: height = 2/3 * width -> aspect-ratio: 3 / 2 */
+  aspect-ratio: 3 / 2;
+  cursor: pointer;
+}
+
+.post-image-container {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+}
+
+.post-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.post-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #0077B5, #0066A0);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.linkedin-icon {
+  font-size: 3em;
+  font-weight: bold;
+  background: white;
+  color: #0077B5;
+  border-radius: 6px;
+  padding: 10px 15px;
+  margin-bottom: 15px;
+}
+
+.post-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+  padding: 40px 20px 20px;
+  color: var(--vaalea-sininen, #EEF3FB);
+  transform: translateY(calc(100% - 60px));
+  transition: transform 0.3s ease;
+}
+
+.post-card:hover .post-overlay {
+  transform: translateY(0);
+}
+
+.post-date {
+  font-size: 0.9em;
+  color: #B0E0E6;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.post-text {
+  font-size: 0.95em;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.post-click-hint {
+  margin-top: 10px;
+  font-size: 0.8em;
+  color: #B0E0E6;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.post-card:hover .post-click-hint {
+  opacity: 1;
+}
+
+.carousel-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--semi-small-gap, 1.5rem);
+  margin-top: var(--medium-gap, 2rem);
+}
+
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: calc(var(--small-gap, 1rem) * 0.7);
+  /* Sync JS and CSS with explicit vars to ensure precise alignment */
+  --dot-size: 20px;
+  --dot-gap: calc(var(--small-gap, 1rem) * 0.7);
+  --liquid-index: 0;
+  filter: url("#gooey");
+  position: relative;
+}
+
+.carousel-dots::before {
+  content: '';
+  position: absolute;
+  width: var(--dot-size);
+  height: var(--dot-size);
+  border-radius: 50%;
+  background: var(--keski-sininen, #B7DDFB);
+  top: 0;
+  left: 0;
+  transform: translateX(calc(var(--liquid-index) * (var(--dot-size) + var(--dot-gap))));
+  transition: transform 0.8s cubic-bezier(0.23, 1, 0.320, 1);
+  z-index: 1;
+}
+
+.carousel-dot {
+  width: var(--dot-size);
+  height: var(--dot-size);
+  border-radius: 50%;
+  border: none;
+  background: var(--kokeilu, #364C67);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 2;
+}
+
+.carousel-dot.active {
+  background: var(--keski-sininen, #B7DDFB);
+}
+
+.carousel-dot:hover:not(.active) {
+  background: var(--keski-sininen, #B7DDFB);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .carousel-slide {
+    flex: 0 0 calc(50% - 10px);
+  }
+
+  .carousel-container {
+    padding: 20px;
+  }
+
+  .carousel-title {
+    font-size: 1.5em;
+  }
+
+  .carousel-wrapper {
+    gap: 10px;
+  }
+
+  .carousel-track {
+    gap: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .carousel-slide {
+    flex: 0 0 100%;
+  }
+
+  .carousel-track {
+    gap: 10px;
+  }
+
+  .carousel-container {
+    margin: 20px 0;
+    padding: 15px;
+  }
+}

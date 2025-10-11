@@ -1,0 +1,34 @@
+.falling-cards {
+  width: 50%;
+  height: 100%;
+  pointer-events: none;
+  perspective: 1200px;
+  overflow: visible;
+}
+
+.falling-card {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform-style: preserve-3d;
+  transition: transform 0.35s cubic-bezier(.2,.9,.2,1);
+  will-change: transform;
+  filter: drop-shadow(0 10px 30px rgba(10,20,40,0.18));
+}
+
+.falling-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(8,12,20,0.18);
+  transform: translateZ(0);
+}
+
+/* Slight depth layering for better composition */
+.falling-card:nth-child(odd) img { filter: saturate(1.02) brightness(0.98); }
+.falling-card:nth-child(even) img { filter: saturate(0.98) brightness(1.02); }
+
+@media (max-width: 800px) {
+  .falling-card { display: none; }
+}

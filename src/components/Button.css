@@ -1,0 +1,151 @@
+/* Button Component Styles */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: none;
+  border-radius: var(--keski-border-radius, 0.5rem);
+  font-family: var(--font-family, 'Karla', sans-serif);
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Button Variants */
+.btn--default {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--vaalea-sininen, #EEF3FB);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn--default:hover:not(.btn--disabled) {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.btn--primary {
+  background: var(--tumma-sininen, #0D62B2);
+  color: white;
+}
+
+.btn--primary:hover:not(.btn--disabled) {
+  background: #005885;
+  transform: translateY(-2px);
+}
+
+.btn--secondary {
+  background: var(--keski-sininen, #B7DDFB);
+  color: var(--tumma-sininen, #0D62B2);
+}
+
+.btn--secondary:hover:not(.btn--disabled) {
+  background: #9AC9F0;
+  transform: translateY(-2px);
+}
+
+.btn--carousel-nav {
+  border-radius: 50%;
+  background: none;
+  border: none;
+  padding: 0;
+  min-width: 50px;
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn--carousel-nav .btn__icon {
+  width: 35px;
+  height: 35px;
+  transition: transform 0.3s ease;
+}
+
+.btn--carousel-nav:hover:not(.btn--disabled) .btn__icon {
+  transform: translateX(3px);
+}
+
+.btn--carousel-nav.btn--carousel-nav-prev:hover:not(.btn--disabled) .btn__icon {
+  transform: translateX(-3px);
+}
+
+.btn--modal-nav {
+  background: #0077B5;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-size: 0.9em;
+}
+
+.btn--modal-nav:hover:not(.btn--disabled) {
+  background: #005885;
+  transform: translateY(-2px);
+}
+
+/* Button Sizes */
+.btn--small {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+}
+
+.btn--medium {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+}
+
+.btn--large {
+  padding: 1rem 2rem;
+  font-size: 1.125rem;
+}
+
+/* Button States */
+.btn--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+.btn--loading {
+  cursor: wait;
+}
+
+.btn--loading .btn__icon--loading {
+  animation: spin 1s linear infinite;
+}
+
+/* Button Icons */
+.btn__icon {
+  flex-shrink: 0;
+}
+
+.btn__icon--left {
+  margin-right: 0.25rem;
+}
+
+.btn__icon--right {
+  margin-left: 0.25rem;
+}
+
+/* Animations */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .btn--carousel-nav {
+    min-width: 40px;
+    min-height: 40px;
+  }
+  
+  .btn--carousel-nav .btn__icon {
+    width: 28px;
+    height: 28px;
+  }
+}

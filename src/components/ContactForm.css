@@ -1,0 +1,93 @@
+/* Contact Form Styles */
+.contact-form {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: var(--keski-border-radius, 0.5rem);
+  backdrop-filter: blur(10px);
+}
+
+.form-group {
+  margin-bottom: var(--medium-gap, 2rem);
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--vaalea-sininen, #EEF3FB);
+  font-family: var(--font-family, 'Karla', sans-serif);
+  font-weight: 500;
+}
+
+.form-input,
+.form-textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--keski-border-radius, 0.5rem);
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--vaalea-sininen, #EEF3FB);
+  font-family: var(--font-family, 'Karla', sans-serif);
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: var(--keski-sininen, #B7DDFB);
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 0 2px var(--keski-sininen-15, rgba(183, 221, 251, 0.15));
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+  color: rgba(238, 243, 251, 0.6);
+}
+
+.form-textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.form-submit-btn {
+  width: 100%;
+  margin-top: var(--small-gap, 1rem);
+}
+
+.form-status {
+  margin-top: var(--small-gap, 1rem);
+  padding: 0.75rem;
+  border-radius: var(--keski-border-radius, 0.5rem);
+  text-align: center;
+  font-family: var(--font-family, 'Karla', sans-serif);
+}
+
+.form-status.success {
+  background: rgba(76, 175, 80, 0.2);
+  color: #4CAF50;
+  border: 1px solid rgba(76, 175, 80, 0.3);
+}
+
+.form-status.error {
+  background: rgba(244, 67, 54, 0.2);
+  color: #F44336;
+  border: 1px solid rgba(244, 67, 54, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .contact-form {
+    margin: 20px;
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-form {
+    margin: 10px;
+    padding: 15px;
+  }
+}
