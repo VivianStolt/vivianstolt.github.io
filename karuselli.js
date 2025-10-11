@@ -25,43 +25,54 @@ class LinkedInCarousel {
             // Try to load post files from the posts directory
             const postFiles = [];
             
-            // Since we can't directly list directory contents in browser,
-            // we'll try to load files with expected naming pattern
-            for (let i = 0; i < 10; i++) {
-                const today = new Date();
-                const dateStr = today.toISOString().split('T')[0];
-                
-                try {
-                    const response = await fetch(`./posts/${dateStr}-${i}.html`);
-                    if (response.ok) {
-                        const html = await response.text();
-                        postFiles.push({
-                            filename: `${dateStr}-${i}.html`,
-                            content: html,
-                            date: dateStr
-                        });
+            // Lista mahdollisista tiedostonimistä scraper:n uusien nimeämiskäytäntöjen mukaan
+            const possibleTimeTexts = [
+                '5-months-ago', '6-months-ago', '7-months-ago', '8-months-ago', '9-months-ago', '10-months-ago', '11-months-ago', '12-months-ago',
+                '1-month-ago', '2-months-ago', '3-months-ago', '4-months-ago',
+                '1-week-ago', '2-weeks-ago', '3-weeks-ago', '4-weeks-ago',
+                '1-day-ago', '2-days-ago', '3-days-ago', '4-days-ago', '5-days-ago', '6-days-ago',
+                'unknown-time'
+            ];
+            
+            // Kokeile löytää tiedostoja uusilla nimillä
+            for (const timeText of possibleTimeTexts) {
+                for (let i = 0; i < 5; i++) {
+                    try {
+                        const filename = `${timeText}-post-${i}.html`;
+                        const response = await fetch(`./posts/${filename}`);
+                        if (response.ok) {
+                            const html = await response.text();
+                            postFiles.push({
+                                filename: filename,
+                                content: html,
+                                timeText: timeText, // Tallennetaan alkuperäinen aikaleima
+                                originalDate: this.parseTimeTextToReadable(timeText)
+                            });
+                        }
+                    } catch (error) {
+                        // File doesn't exist, continue
                     }
-                } catch (error) {
-                    // File doesn't exist, continue
                 }
             }
             
-            // If no posts found with today's date, try recent dates
+            // Jos ei löydy uusia, kokeile vanhoja päivämääränimisiä tiedostoja
             if (postFiles.length === 0) {
-                for (let days = 1; days <= 7; days++) {
+                for (let days = 0; days <= 7; days++) {
                     const date = new Date();
                     date.setDate(date.getDate() - days);
                     const dateStr = date.toISOString().split('T')[0];
                     
-                    for (let i = 0; i < 5; i++) {
+                    for (let i = 0; i < 10; i++) {
                         try {
-                            const response = await fetch(`./posts/${dateStr}-${i}.html`);
+                            const filename = `${dateStr}-${i}.html`;
+                            const response = await fetch(`./posts/${filename}`);
                             if (response.ok) {
                                 const html = await response.text();
                                 postFiles.push({
-                                    filename: `${dateStr}-${i}.html`,
+                                    filename: filename,
                                     content: html,
-                                    date: dateStr
+                                    timeText: 'recently', // Placeholder
+                                    originalDate: this.formatDate(dateStr)
                                 });
                             }
                         } catch (error) {
@@ -85,6 +96,37 @@ class LinkedInCarousel {
             console.error('Error loading posts:', error);
             this.createDemoPosts();
         }
+    }
+    
+    parseTimeTextToReadable(timeText) {
+        // Muunna scraper:n aikaleima luettavaksi muotoon
+        const timeMap = {
+            '1-month-ago': '1 kuukausi sitten',
+            '2-months-ago': '2 kuukautta sitten',
+            '3-months-ago': '3 kuukautta sitten',
+            '4-months-ago': '4 kuukautta sitten',
+            '5-months-ago': '5 kuukautta sitten',
+            '6-months-ago': '6 kuukautta sitten',
+            '7-months-ago': '7 kuukautta sitten',
+            '8-months-ago': '8 kuukautta sitten',
+            '9-months-ago': '9 kuukautta sitten',
+            '10-months-ago': '10 kuukautta sitten',
+            '11-months-ago': '11 kuukautta sitten',
+            '12-months-ago': '12 kuukautta sitten',
+            '1-week-ago': '1 viikko sitten',
+            '2-weeks-ago': '2 viikkoa sitten',
+            '3-weeks-ago': '3 viikkoa sitten',
+            '4-weeks-ago': '4 viikkoa sitten',
+            '1-day-ago': '1 päivä sitten',
+            '2-days-ago': '2 päivää sitten',
+            '3-days-ago': '3 päivää sitten',
+            '4-days-ago': '4 päivää sitten',
+            '5-days-ago': '5 päivää sitten',
+            '6-days-ago': '6 days ago',
+            'unknown-time': 'Time unknown'
+        };
+        
+        return timeMap[timeText] || timeText.replace(/-/g, ' ');
     }
     
     parsePost(postData) {
@@ -165,31 +207,49 @@ class LinkedInCarousel {
             text = text.substring(0, 147) + '...';
         }
         
+        // Extract timestamp from HTML
+        let timeStamp = 'Time unknown';
+        
+        // Find timestamp in HTML (e.g. "5mo", "7mo", "11mo")
+        const timeRegex = /(\d+)mo\s*•|(\d+)\s*months?\s+ago|(\d+)\s*weeks?\s+ago|(\d+)\s*days?\s+ago/i;
+        const htmlText = postData.content;
+        const timeMatch = htmlText.match(timeRegex);
+        
+        if (timeMatch) {
+            if (timeMatch[1]) { // "5mo" format
+                const months = parseInt(timeMatch[1]);
+                timeStamp = `${months} months ago`;
+            } else if (timeMatch[2]) { // "X months ago" format
+                const months = parseInt(timeMatch[2]);
+                timeStamp = `${months} months ago`;
+            } else if (timeMatch[3]) { // weeks
+                const weeks = parseInt(timeMatch[3]);
+                timeStamp = `${weeks} weeks ago`;
+            } else if (timeMatch[4]) { // days
+                const days = parseInt(timeMatch[4]);
+                timeStamp = `${days} days ago`;
+            }
+        } else {
+            // Try to find other timestamp formats
+            const otherTimeRegex = /(\d+)w\s+|(\d+)d\s+|(\d+)\s*week|(\d+)\s*day/i;
+            const otherMatch = htmlText.match(otherTimeRegex);
+            if (otherMatch) {
+                if (otherMatch[1]) timeStamp = `${otherMatch[1]} weeks ago`;
+                else if (otherMatch[2]) timeStamp = `${otherMatch[2]} days ago`;
+            }
+        }
+        
+        // If not found in HTML, use scraper's timestamp
+        if (timeStamp === 'Time unknown' && postData.originalDate) {
+            timeStamp = postData.originalDate;
+        }
+
         return {
             image: imageUrl,
-            text: text || 'LinkedIn-postaus',
-            date: this.formatDate(postData.date),
+            text: text || 'LinkedIn post',
+            date: timeStamp,
             originalHtml: postData.content
         };
-    }
-    
-    createDemoPosts() {
-        // Create demo posts for testing
-        const demoTexts = [
-            'Inspiring day at the tech conference! Amazing insights about the future of web development...',
-            'Just completed an exciting project using React and Node.js. The results exceeded expectations...',
-            'Sharing some thoughts on modern design trends and user experience best practices...',
-            'Great networking event today. Met so many talented professionals in the industry...',
-            'Working on a new portfolio project. Excited to share the progress with everyone...',
-            'Reflections on continuous learning and professional development in tech...'
-        ];
-        
-        this.posts = demoTexts.map((text, index) => ({
-            image: `https://via.placeholder.com/300x200/4a90e2/ffffff?text=Post+${index + 1}`,
-            text: text,
-            date: this.formatDate(new Date().toISOString().split('T')[0]),
-            originalHtml: `<div>${text}</div>`
-        }));
     }
     
     formatDate(dateStr) {
@@ -206,19 +266,21 @@ class LinkedInCarousel {
             slide.className = 'carousel-slide';
             
             slide.innerHTML = `
-                <div class="post-card" data-post-index="${index}">
-                    <div class="post-image-container">
-                        ${post.image ? 
-                            `<img src="${post.image}" alt="LinkedIn post ${index + 1}" class="post-image">` :
-                            `<div class="post-placeholder">
-                                <div class="linkedin-icon">in</div>
-                                <span>LinkedIn Post</span>
-                            </div>`
-                        }
-                        <div class="post-overlay">
-                            <div class="post-date">${post.date}</div>
-                            <div class="post-text">${post.text}</div>
-                            <div class="post-click-hint">Klikkaa avataksesi koko postauksen</div>
+                <div class="tilt-wrapper" data-tilt>
+                    <div class="post-card" data-post-index="${index}">
+                        <div class="post-image-container">
+                            ${post.image ? 
+                                `<img src="${post.image}" alt="LinkedIn post ${index + 1}" class="post-image">` :
+                                `<div class="post-placeholder">
+                                    <div class="linkedin-icon">in</div>
+                                    <span>LinkedIn Post</span>
+                                </div>`
+                            }
+                            <div class="post-overlay">
+                                <div class="post-date">${post.date}</div>
+                                <div class="post-text">${post.text}</div>
+                                <div class="post-click-hint">Click to open full post</div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -233,6 +295,19 @@ class LinkedInCarousel {
         
         this.createDots();
         this.createModal();
+        
+        // Initialize VanillaTilt for all tilt wrappers with subtle effect
+        setTimeout(() => {
+            VanillaTilt.init(document.querySelectorAll('.tilt-wrapper'), {
+                max: 8,                // Reduced from 25 to 8 degrees
+                speed: 800,           // Slower, more elegant movement
+                glare: false,         // Disable glare effect to remove the white shine
+                scale: 1.02,          // Very subtle scale on hover
+                perspective: 1500,    // More perspective for smoother effect
+                transition: true,
+                easing: "cubic-bezier(.03,.98,.52,.99)"
+            });
+        }, 100); // Small delay to ensure DOM is ready
     }
     
     createDots() {
@@ -296,7 +371,6 @@ class LinkedInCarousel {
     }
     
     updateCarousel() {
-        const slideWidth = 100 / this.slidesPerView;
         const translateX = -this.currentSlide * 100;
         
         this.track.style.transform = `translateX(${translateX}%)`;
@@ -309,6 +383,19 @@ class LinkedInCarousel {
         dots.forEach((dot, index) => {
             dot.classList.toggle('active', index === this.currentSlide);
         });
+        
+        // Move liquid dot to current position for gooey effect
+        this.animateLiquidDot();
+    }
+    
+    animateLiquidDot() {
+        const dotWidth = 20; // Match CSS: width: 20px
+        const dotGap = 16 * 0.7; // 0.7 * 1rem (matching CSS gap calculation)
+        const totalWidth = dotWidth + dotGap;
+        const translateX = this.currentSlide * totalWidth;
+        
+        // Set CSS custom property for the liquid dot position
+        this.dotsContainer.style.setProperty('--liquid-x', `${translateX}px`);
     }
     
     updateButtons() {
@@ -329,8 +416,8 @@ class LinkedInCarousel {
                     <div class="modal-post-content"></div>
                 </div>
                 <div class="modal-navigation">
-                    <button class="modal-nav-btn modal-prev">‹ Edellinen</button>
-                    <button class="modal-nav-btn modal-next">Seuraava ›</button>
+                    <button class="modal-nav-btn modal-prev">‹ Previous</button>
+                    <button class="modal-nav-btn modal-next">Next ›</button>
                 </div>
             </div>
         `;
