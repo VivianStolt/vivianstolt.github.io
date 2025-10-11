@@ -140,3 +140,8 @@ Copy `.env` file and adjust as needed:
 - `PORT`: Server port (default: 3001)
 - `NODE_ENV`: Environment (development/production)
 - `VITE_API_BASE_URL`: API base URL for frontend
+
+## ✅ Cleanup & Notes
+
+- This repository is now a frontend-only static site. Local dev artifacts such as `.venv/` and `browser_profile/` have been moved to the `archive/` folder and are ignored via `.gitignore`.
+- To keep your repo small, avoid committing large local folders (virtualenvs, browser profiles). If you want these removed from git history, let me know and I can run a history rewrite (force-push required).
