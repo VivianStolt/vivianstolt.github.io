@@ -40,7 +40,8 @@ jobs:
         uses: actions/configure-pages@v4
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        # v3 of actions/upload-pages-artifact is deprecated; use v4 (or latest) per GitHub deprecation notice
+        uses: actions/upload-pages-artifact@v4
         with:
           path: './dist'
 
