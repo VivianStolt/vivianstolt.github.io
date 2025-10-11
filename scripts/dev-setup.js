@@ -30,7 +30,6 @@ const requiredDirs = [
   'src/components',
   'src/assets/icons',
   'src/styles',
-  'server',
   'public'
 ];
 
@@ -54,7 +53,6 @@ const requiredFiles = [
   'src/components/Icon.jsx',
   'src/services/api.js',
   'src/hooks/useVanillaTilt.js',
-  'server/index.js',
   'vite.config.js'
 ];
 
@@ -70,19 +68,17 @@ for (const file of requiredFiles) {
 
 console.log('\n🎯 Available npm scripts:');
 console.log('   npm run dev           - Start frontend development server');
-console.log('   npm run dev:server    - Start backend server with nodemon');
-console.log('   npm run dev:full      - Start both frontend and backend');
 console.log('   npm run build         - Build for production');
 console.log('   npm run preview       - Preview production build');
 
 console.log('\n🌟 Quick start:');
 console.log('   1. npm install         (if not done already)');
-console.log('   2. npm run dev:full    (starts both frontend and backend)');
+console.log('   2. npm run dev         (starts frontend development server)');
 console.log('   3. Open http://localhost:3000 in your browser');
 
 console.log('\n💡 Development tips:');
 console.log('   - Frontend runs on http://localhost:3000');
-console.log('   - Backend API runs on http://localhost:3001');
+console.log('   - Use the provided scraper.py to generate `posts/` HTML files locally');
 console.log('   - SVG icons are in src/assets/icons/');
 console.log('   - Components are in src/components/');
 console.log('   - Original files are backed up in original-backup/');

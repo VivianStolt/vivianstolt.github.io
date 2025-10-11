@@ -1,102 +1,56 @@
 import React, { useState } from 'react';
-import Button from './Button';
-import { contactService } from '../services/api';
 import './ContactForm.css';
 
-const ContactForm = ({ onSubmit }) => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
-  });
-  const [status, setStatus] = useState('');
+// Simple frontend-only contact form that posts to Formspree
+const ContactForm = () => {
+  const [statusMessage, setStatusMessage] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setStatus('');
+    setStatusMessage('');
+
+    const form = e.target;
+    const formData = new FormData(form);
 
     try {
-      const result = await contactService.submitForm(formData);
-      
-      if (result.success) {
-        setStatus(result.message);
-        setFormData({ name: '', email: '', message: '' });
-        if (onSubmit) onSubmit(formData);
+      const response = await fetch('https://formspree.io/f/mdkznpbz', {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        setStatusMessage('Kiitos! Viesti lähetetty.');
+        form.reset();
       } else {
-        setStatus('Failed to send message. Please try again.');
+        setStatusMessage('Lähetys epäonnistui. Yritä uudelleen.');
       }
-    } catch (error) {
-      setStatus('Failed to send message. Please try again.');
-      console.error('Contact form error:', error);
+    } catch (err) {
+      console.error('Form submission error:', err);
+      setStatusMessage('Lähetys epäonnistui. Yritä uudelleen.');
     } finally {
       setIsSubmitting(false);
     }
   };
 
   return (
-    <form className="contact-form" onSubmit={handleSubmit}>
-      <div className="form-group">
-        <label htmlFor="name" className="form-label">Name:</label>
-        <input
-          type="text"
-          name="name"
-          id="name"
-          value={formData.name}
-          onChange={handleChange}
-          className="form-input"
-          required
-        />
-      </div>
+    <form id="my-form" onSubmit={handleSubmit} className="contact-form">
+      <label htmlFor="name">Nimi:</label>
+      <input type="text" name="name" id="name" required />
 
-      <div className="form-group">
-        <label htmlFor="email" className="form-label">Email:</label>
-        <input
-          type="email"
-          name="email"
-          id="email"
-          value={formData.email}
-          onChange={handleChange}
-          className="form-input"
-          required
-        />
-      </div>
+      <label htmlFor="email">Sähköposti:</label>
+      <input type="email" name="email" id="email" required />
 
-      <div className="form-group">
-        <label htmlFor="message" className="form-label">Message:</label>
-        <textarea
-          name="message"
-          id="message"
-          value={formData.message}
-          onChange={handleChange}
-          className="form-textarea"
-          required
-        />
-      </div>
+      <label htmlFor="message">Viesti:</label>
+      <textarea name="message" id="message" required></textarea>
 
-      <Button 
-        type="submit" 
-        variant="primary" 
-        loading={isSubmitting}
-        className="form-submit-btn"
-      >
-        {isSubmitting ? 'Sending...' : 'Send'}
-      </Button>
+      <button type="submit" disabled={isSubmitting}>{isSubmitting ? 'Lähetetään...' : 'Lähetä'}</button>
 
-      {status && (
-        <div className={`form-status ${status.includes('success') ? 'success' : 'error'}`}>
-          {status}
-        </div>
-      )}
+      <div id="status" className="form-status">{statusMessage}</div>
     </form>
   );
 };

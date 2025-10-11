@@ -105,25 +105,7 @@ export const postService = {
 
 export const contactService = {
   async submitForm(formData) {
-    try {
-      // Try API endpoint first
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formData)
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        return { success: true, message: data.message };
-      }
-    } catch (error) {
-      console.warn('API contact endpoint not available, falling back to Formspree:', error);
-    }
-
-    // Fallback to Formspree
+    // Frontend-only: submit directly to Formspree
     const formDataObj = new FormData();
     Object.keys(formData).forEach(key => {
       formDataObj.append(key, formData[key]);
@@ -139,8 +121,8 @@ export const contactService = {
 
     if (response.ok) {
       return { success: true, message: 'Thank you! Message sent successfully.' };
-    } else {
-      throw new Error('Failed to send message');
     }
+
+    throw new Error('Failed to send message');
   }
 };
