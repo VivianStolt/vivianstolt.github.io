@@ -92,16 +92,16 @@ function App() {
               <p className="slide-in-right">Designing intuitive experiences that build trust between people and technology</p>
             </div>
             {/* Decorative falling cards placed behind the intro content */}
-            <FallingCards
+            {/*<FallingCards
               cardsConfig={[
-                { src: 'BrandingJylhäsauma.png', x: -10, y: 5, z: 0, rot: 5, rotX: -32, rotY: 24, scale: 1.1, size: 220, speed: 0.2 },
-                { src: 'KauppojenKajaaniBanneri.png', x: 10,  y: 4, z: -90, rot: -4, rotX: 0, rotY: 0, scale: 1,  size: 220, speed: 0.1 },
-                { src: 'FinnhouseBanner.png', x: 5,  y: 15, z: 80, rot: -18, rotX: -13, rotY: -16, scale: 1.3, size: 220, speed: 0.09 },
+                { src: 'BrandingJylhäsauma.png', x: -10, y: 5, z: 0, rot: -3, rotX: -32, rotY: 24, scale: 1.1, size: 220, speed: 0.2 },
+                { src: 'KauppojenKajaaniBanneri.png', x: 10,  y: 0, z: -90, rot: 4, rotX: 0, rotY: 0, scale: 1,  size: 220, speed: 0.1 },
+                { src: 'FinnhouseBanner.png', x: 12,  y: 15, z: 80, rot: -18, rotX: -13, rotY: -16, scale: 1.1, size: 220, speed: 0.09 },
                 { src: 'doctor.png', x: -6,  y: 22,  z: 20, rot: -11, rotX: 2, rotY: 25, scale: 1.2,  size: 220, speed: 0.06 },
-                { src: 'remote-ship.png', x: 6,   y: 28,  z: 150,rot: 0, rotX: -13, rotY: 10, scale: 1.15, size: 220, speed: 0.18 }
+                { src: 'remote-ship.png', x: 12,   y: 28,  z: 150,rot: 0, rotX: 22, rotY: -12, scale: 1.15, size: 220, speed: 0.18 }
               ]}
               depthInfluence={1.0}
-            />
+            /> */}
           </div>
         </section>
 
