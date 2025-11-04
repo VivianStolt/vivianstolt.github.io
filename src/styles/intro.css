@@ -1,0 +1,41 @@
+.vs-intro .vs-inner {
+  height: 100%;
+  background: none;
+  overflow: visible;
+  gap: 64px;
+}
+
+.vs-intro .vs-inner .half-banner {
+  background: rgba(0, 0, 0, 0);
+  .liquidGlass-effect {
+    display: none;
+  }
+}
+
+/* Allow the scrub section inner container to show oversized text without clipping */
+.vs-section.vs-scrub .vs-inner {
+  overflow: visible;
+}
+
+@media (max-width: 600px) {
+  .vs-intro .vs-inner .half-banner {
+    width: 100% !important;
+    text-align: center;
+    padding-top: 24px;
+    padding-bottom: 24px;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 60%;
+    left: 50%;
+    max-width: 400px;
+    background: rgba(0, 0, 0, 0.6);
+    .liquidGlass-effect {
+      display: absolute;
+    }
+  }
+
+  .vs-intro .vs-inner {
+    padding: 0 !important;
+    position: relative;
+  }
+}

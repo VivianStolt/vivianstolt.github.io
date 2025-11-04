@@ -1,50 +1,75 @@
 /* Button Component Styles */
 .btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  border: none;
-  border-radius: var(--keski-border-radius, 0.5rem);
-  font-family: var(--font-family, 'Karla', sans-serif);
-  font-weight: 500;
-  text-decoration: none;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: fit-content;
+    height: fit-content;
+    border-radius: 50px;
+    font-family: 'VivinFont';
+    font-weight: 400;
+    line-height: 83%;
+    letter-spacing: 0.21em;
+    color: #0D62B2;
+    text-wrap-mode: nowrap;
+    border: 0;
 }
 
 /* Button Variants */
+
+.btn--primary {
+      box-shadow: 0px 0px 4px #0D62B2;
+      background: #000000;
+
+}
+
 .btn--default {
-  background: rgba(255, 255, 255, 0.1);
-  color: var(--vaalea-sininen, #EEF3FB);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0px 0px 4px #0D62B2;
+      background: #000000;
+
 }
 
 .btn--default:hover:not(.btn--disabled) {
-  background: rgba(255, 255, 255, 0.2);
-  transform: translateY(-2px);
+    transform: scale(0.98);
+    background: #000000;
+    box-shadow: 0px 0px 4px var(--vaalea-sininen);
+    border-radius: 50px;
+    color: var(--vaalea-sininen);
 }
 
-.btn--primary {
-  background: var(--tumma-sininen, #0D62B2);
-  color: white;
+.black-circle {
+    border-radius: 100px !important;
+    background: rgba(0, 0, 0, 0.8) !important;
+    padding: 0.8rem;
 }
 
 .btn--primary:hover:not(.btn--disabled) {
-  background: #005885;
-  transform: translateY(-2px);
+    transform: scale(0.98);
+    background: #000000;
+    box-shadow: 0px 0px 4px var(--vaalea-sininen);
+    border-radius: 50px;
+    color: var(--vaalea-sininen);
 }
 
 .btn--secondary {
-  background: var(--keski-sininen, #B7DDFB);
-  color: var(--tumma-sininen, #0D62B2);
+    background: #B7DDFB;
+    box-shadow: 0px 0px 4px #B7DDFB;
+    border-radius: 50px;
 }
 
 .btn--secondary:hover:not(.btn--disabled) {
-  background: #9AC9F0;
-  transform: translateY(-2px);
+    transform: scale(0.98);
+    background: var(--tumma-sininen);
+    box-shadow: 0px 0px 4px var(--tumma-sininen);
+    border-radius: 50px;
+    color: var(--vaalea-sininen);
 }
 
 .btn--carousel-nav {
@@ -83,8 +108,11 @@
 }
 
 .btn--modal-nav:hover:not(.btn--disabled) {
-  background: #005885;
-  transform: translateY(-2px);
+    transform: scale(0.98);
+    background: #000000;
+    box-shadow: 0px 0px 4px var(--vaalea-sininen);
+    border-radius: 50px;
+    color: var(--vaalea-sininen);
 }
 
 /* Button Sizes */
@@ -94,8 +122,8 @@
 }
 
 .btn--medium {
-  padding: 0.75rem 1.5rem;
-  font-size: 1rem;
+  padding: 20px 40px;
+  font-size: clamp(0.6rem, 2.5vw, 1rem);
 }
 
 .btn--large {
@@ -106,7 +134,6 @@
 /* Button States */
 .btn--disabled {
   opacity: 0.5;
-  cursor: not-allowed;
   transform: none !important;
 }
 
@@ -138,7 +165,7 @@
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
+@media (max-width: 600px) {
   .btn--carousel-nav {
     min-width: 40px;
     min-height: 40px;
@@ -147,5 +174,9 @@
   .btn--carousel-nav .btn__icon {
     width: 28px;
     height: 28px;
+  }
+
+  .btn--medium {
+    padding: 10px 20px;
   }
 }

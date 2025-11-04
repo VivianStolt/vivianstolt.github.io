@@ -1,0 +1,160 @@
+.me {
+    width: 40%;
+    height: 100%;
+    max-width: 330px;
+    margin-bottom: 110px;
+    img {
+        width: 100%;
+        height: auto;
+    }
+}
+
+.mobile-me {
+    display: none;
+}
+
+.mobile-text {
+    h2{
+        color: var(--vaalea-sininen);
+    }
+    h3{
+        color: var(--vaalea-sininen);
+    }
+}
+
+.im-vivian-icon {
+  display: block;
+  text-align: center;
+  font-family: var(--font-vivi);
+  font-size: clamp(2rem, 8vw, 7rem);
+  font-weight: 400;
+  line-height: 100%;
+  letter-spacing: 0.28em;
+  color: #000000;
+  text-shadow: 0px 0px 10.7px #0D62B2;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  white-space: nowrap;
+  overflow-wrap: normal;
+  word-break: keep-all;
+}
+
+@media (max-width: 800px) {
+  .mobile-text {
+        flex-direction: column-reverse !important;
+        position: relative !important;
+        .mobile-half {
+        width: 100% !important;
+        }
+        h2 {
+            width: 100% !important;
+        }
+    }
+
+    .me {
+        display: none;
+    }
+
+    .mobile-half {
+        gap: var(--semi-small-gap) !important;
+        padding-left: 24px;
+        padding-right: 24px;
+        .container-dark {
+            gap: 0px !important;
+            padding: var(--padding-keski) !important;
+        }
+    }
+
+    .mobile-me {
+        display: block;
+    }
+    .mobile-text .row {
+        align-items: flex-start !important;
+        justify-content: space-between !important;
+    }
+
+    .mobile-text .row > .mobile-me {
+        display: flex !important;    
+        align-items: end !important; 
+        justify-content: end !important;
+        width: auto !important;
+        /* height will be set dynamically to match the h3 via JS */
+        margin-top: 2.5rem;
+    }
+
+    /* Prevent the image from overflowing the stretched container; it will scale down if needed */
+    .mobile-text .row > .mobile-me img {
+        max-height: 250px;
+        height: 340%;
+        width: auto;
+        display: block;
+    }
+
+    .mobile-text .row > p {
+        width: 50% !important;
+    }
+    
+/*   .me {
+    position: absolute !important;
+    top: auto !important;
+    width: 200px !important;
+    height: 215px !important;
+    right: auto !important;
+    left: 57% !important;
+    overflow: visible !important;
+    bottom: 40% !important;
+    img {
+      position: absolute !important;
+      right: auto !important;
+      bottom: -40px !important;
+      top: auto !important;
+      left: 0 !important;
+      width: clamp(7rem, 29vw, 20rem) !important;
+      height: auto !important;
+      transform-origin: right bottom !important;
+      display: block !important;
+      max-width: none !important;
+    }
+    } */
+}
+
+@media (max-width: 600px) {
+
+    .button-row {
+        padding-left: var(--padding-pieni) !important;
+        padding-right: var(--padding-pieni) !important;
+        gap: var(--small-gap) !important;
+    }
+    .mobile-text .row > .mobile-me img {
+        max-height: 200%;
+        height: auto;
+        width: auto;
+        display: block;
+    }
+
+    .im-vivian-icon {
+        padding-left: var(--padding-pieni) !important;
+        padding-right: var(--padding-pieni) !important;
+    }
+
+    .mobile-half {
+        gap: var(--small-gap) !important;
+        padding: var(--padding-pieni) !important;
+        .container-dark {
+            gap: 0px !important;
+            width: calc(100% - 2 * var(--padding-pieni)) !important;
+            padding: var(--padding-pieni) !important;
+        }
+    }
+
+    .mobile-text .row > .mobile-me {
+        margin-top: 1.5rem !important;
+        width: 40% !important;
+    }
+
+    .mobile-text .row > p {
+        width: 50% !important;
+    }
+
+}

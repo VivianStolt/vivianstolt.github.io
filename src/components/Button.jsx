@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Icon from './Icon';
+import Arrow from './Arrow';
 import './Button.css';
 
 const Button = ({ 
@@ -13,13 +14,15 @@ const Button = ({
   children,
   className = '',
   onClick,
+  // when true, do not add the `btn--${size}` class. Useful when a wrapper wants no size class.
+  noSizeClass = false,
   ...props
 }) => {
   const baseClass = 'btn';
   const classes = [
     baseClass,
     `btn--${variant}`,
-    `btn--${size}`,
+    !noSizeClass && `btn--${size}`,
     disabled && 'btn--disabled',
     loading && 'btn--loading',
     className
@@ -36,6 +39,21 @@ const Button = ({
       return <Icon name="loading" className="btn__icon btn__icon--loading" />;
     }
     if (icon) {
+      // support arrow icons as a dedicated component for hover states
+      const arrowMatch = typeof icon === 'string' && icon.match(/^arrow-(up|down|left|right)$/);
+      if (arrowMatch) {
+        const direction = arrowMatch[1];
+        return (
+          <Arrow
+            direction={direction}
+            size={35}
+            className={`btn__icon btn__icon--${iconPosition}`}
+            ariaHidden={false}
+            disabled={disabled}
+          />
+        );
+      }
+
       return <Icon name={icon} className={`btn__icon btn__icon--${iconPosition}`} />;
     }
     return null;
@@ -64,6 +82,7 @@ Button.propTypes = {
   loading: PropTypes.bool,
   children: PropTypes.node,
   className: PropTypes.string,
+  noSizeClass: PropTypes.bool,
   onClick: PropTypes.func
 };
 

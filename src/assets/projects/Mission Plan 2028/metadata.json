@@ -1,0 +1,30 @@
+{
+  "title": "Mission Plan 2028",
+  "slug": "mission-plan-2028",
+  "year": "2023",
+  "cover": "MissionPlan.png",
+  "description": "How to design autonomous and intelligent systems for employee wellbeing.",
+  "tags": ["problem solving", "ux-research", "figma", "workshop development", "human-computer interaction research"],
+  "sections": [
+    {
+      "type": "slider",
+      "slides": [
+        {
+          "title": "Frame 101.png",
+          "text": "A short introduction to the project goals and approach.",
+          "image": "Frame 101.png"
+        },
+        {
+          "title": "Workshops",
+          "text": "Run workshops to collect employee needs and pain points.",
+          "image": "workshop.png"
+        },
+        {
+          "title": "Prototypes",
+          "text": "Low-fidelity prototypes explored interaction patterns for autonomous helpers.",
+          "image": "Electrician4.png"
+        }
+      ]
+    }
+  ]
+}

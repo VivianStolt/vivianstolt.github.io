@@ -1,0 +1,50 @@
+.arrow-icon-wrapper {
+  position: relative;
+  display: inline-block;
+  line-height: 0; /* remove descender space from img */
+}
+
+.arrow-icon-wrapper img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-user-drag: none;
+  user-select: none;
+  transition: opacity 240ms cubic-bezier(0.2, 0.8, 0.2, 1), transform 240ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  will-change: opacity, transform;
+}
+
+.scroll-arrow.left .arrow-icon-wrapper img {
+  left: -2px;
+}
+
+.scroll-arrow.right .arrow-icon-wrapper img {
+  right: 2px;
+}
+
+.arrow-base.is-visible {
+  opacity: 1;
+  transform: scale(1);
+}
+.arrow-base.is-hidden {
+  opacity: 0;
+  transform: scale(0.98);
+}
+
+.arrow-hover.is-visible {
+  opacity: 1;
+  transform: scale(0.9);
+}
+.arrow-hover.is-hidden {
+  opacity: 0;
+  transform: scale(1.02);
+}
+
+/* small touch: slightly raise hover image on enter for a subtle morph feel */
+.arrow-icon-wrapper:active .arrow-hover.is-visible,
+.arrow-icon-wrapper:focus .arrow-hover.is-visible,
+.arrow-icon-wrapper:hover .arrow-hover.is-visible {
+  transform: translateY(-1px) scale(0.9);
+}

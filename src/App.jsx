@@ -1,15 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Carousel from './components/Carousel';
 import ContactForm from './components/ContactForm';
 import VideoBackground from './components/VideoBackground';
 import FallingCards from './components/FallingCards';
+import Button from './components/Button';
+import Navbar from './components/Navbar';
+import ProjectsSection from './components/ProjectsSection';
 import { postService } from './services/api';
 import './styles/globals.css';
+// Import local image so the bundler (Vite) can include it correctly
+import MeImg from './assets/pics/Me.png';
+// ImVivian SVG replaced by text using new Vivin font
 
 function App() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [aboutExpanded, setAboutExpanded] = useState(false);
+  // Refs used to sync the mobile image container height to the h3 height on small screens
+  const h3Ref = useRef(null);
+  const mobileMeRef = useRef(null);
 
   useEffect(() => {
     fetchPosts();
@@ -31,6 +41,52 @@ function App() {
   const handleContactSubmit = (formData) => {
     console.log('Contact form submitted:', formData);
   };
+
+  const handleContactClick = () => {
+    const el = document.querySelector('[data-vs-section="contact"]');
+    if (el && el.scrollIntoView) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+      // fallback: try by class
+      const fallback = document.querySelector('.vs-section.vs-contact');
+      if (fallback && fallback.scrollIntoView) fallback.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
+  // Sync .mobile-me height to the h3 height on small screens. Use ResizeObserver so
+  // when the text wraps or font-size changes, the image container follows.
+  useEffect(() => {
+    const syncHeight = () => {
+      const h3El = h3Ref.current;
+      const mobileEl = mobileMeRef.current;
+      if (!h3El || !mobileEl) return;
+
+      // Only apply when in the mobile layout (<= 800px)
+      if (window.innerWidth <= 800) {
+        const h = h3El.offsetHeight;
+        mobileEl.style.height = h + 'px';
+      } else {
+        // Reset when not mobile
+        mobileEl.style.height = '';
+      }
+    };
+
+    // Observe changes to the h3's size (e.g., wrapping) and window resizes
+    let ro;
+    if (window.ResizeObserver) {
+      ro = new ResizeObserver(syncHeight);
+      if (h3Ref.current) ro.observe(h3Ref.current);
+    }
+    window.addEventListener('resize', syncHeight);
+
+    // Initial sync
+    syncHeight();
+
+    return () => {
+      if (ro && h3Ref.current) ro.unobserve(h3Ref.current);
+      window.removeEventListener('resize', syncHeight);
+    };
+  }, []);
 
   return (
     <div className="App">
@@ -66,8 +122,9 @@ function App() {
       </svg>
    
 
-      {/* Video background sits under all sections */}
-      <VideoBackground />
+  {/* Video background sits under all sections */}
+  <Navbar />
+  <VideoBackground />
 
       <main className="sections-root">
         <section
@@ -77,8 +134,8 @@ function App() {
           data-vs-ranges='[49,198]'
         >
           <div className="vs-inner">
-            <div className="liquidGlass-effect" aria-hidden="true"></div>
-            <div className="liquidGlass-content">
+            <div className="radius-keski half-banner container-dark padding-pieni">
+              <div className="liquidGlass-effect radius-keski" aria-hidden="true"></div>
               <h1 className="animated-headline css-only">
                 <span>UX/UI</span>
                 <span>DESIGN</span>
@@ -110,19 +167,48 @@ function App() {
           data-vs-section="intro-scrub"
           data-vs-mode="scrub"
           data-vs-ranges='[199,249]'
-        />
+        >
+        </section>
 
         <section
-          className="vs-section vs-about"
+          className="vs-section vs-about row"
           data-vs-section="about"
           data-vs-mode="loop"
           data-vs-ranges='[250,399]'
         >
-          <div className="vs-inner">
-            <div className="liquidGlass-effect" aria-hidden="true"></div>
-            <div className="liquidGlass-content">
-                <h2>Oma esittely</h2>
-                <p>Placeholder: oma esittely.</p>
+          <div className={`mobile-text row scale-gap height-fit justify-center ${aboutExpanded ? 'align-top' : 'align-bottom'}`}>
+            <div className="mobile-half column large-gap align-left half-width topbot-padding-keski">
+              <div className="im-vivian-icon leftright-padding-keski" role="heading" aria-level="1" aria-hidden={false}>I'M VIVIAN</div>
+                <div className="radius-keski align-left column semi-gap padding-keski container-dark fill-width">
+                  <div className="liquidGlass-effect radius-keski" aria-hidden="true"></div>
+                  <div className="row semi-gap align-left justify-left">
+                    <p ref={h3Ref}>I'm Vivian Stolt, a UX/UI designer who loves creating transparent, intuitive, and engaging user experiences and interfaces.</p>
+                    <div ref={mobileMeRef} className="mobile-me">
+                      <img src={MeImg} alt="Vivian Stolt" />
+                    </div>
+                  </div>
+                  <div className="column semi-gap align-left justify-left">
+                    <div className="semi-gap column" id="about-extra" aria-hidden={!aboutExpanded} style={{ display: aboutExpanded ? 'flex' : 'none' }}>
+                      <p>I enjoy applying my unique creativity to find out-of-the-box solutions, renewing and developing with AI and technological communication tools, while creating seamless and trustworthy user experiences.</p>
+                      <p>I focus on user research and experience, empathetic perspective-taking, and front-end development. I enjoy collaborative teamwork and believe the strongest ideas emerge through collective creativity. My goal is to contribute with a positive attitude and foster an open, supportive environment where diverse perspectives are valued.</p>
+                    </div>
+                    <h2>Bringing ideas to life through stunning designs </h2>
+                  </div>
+                </div>
+              <div className="button-row row large-gap justify-center">
+                <Button
+                  variant={aboutExpanded ? 'secondary' : 'primary'}
+                  onClick={() => setAboutExpanded(prev => !prev)}
+                  aria-expanded={aboutExpanded}
+                  aria-controls="about-extra"
+                >
+                  {aboutExpanded ? 'SHOW LESS' : 'SHOW MORE'}
+                </Button>
+                <Button variant="default" onClick={handleContactClick}>CONTACT ME</Button>
+              </div>
+              </div>
+            <div className="me">
+              <img src={MeImg} alt="Vivian Stolt" />
             </div>
           </div>
         </section>
@@ -140,13 +226,7 @@ function App() {
           data-vs-mode="loop"
           data-vs-ranges='[451,600]'
         >
-          <div className="vs-inner">
-            <div className="liquidGlass-effect" aria-hidden="true"></div>
-            <div className="liquidGlass-content">
-                <h2>Projektini</h2>
-                <p>Placeholder: projektit.</p>
-            </div>
-          </div>
+          <ProjectsSection />
         </section>
 
         <section

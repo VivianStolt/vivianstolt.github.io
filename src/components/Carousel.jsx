@@ -71,7 +71,8 @@ const Carousel = ({ posts = [], title = "Latest LinkedIn Posts" }) => {
           icon="arrow-left"
           disabled={!canGoPrev}
           onClick={goToPrevSlide}
-          className="carousel-btn-prev"
+          className="carousel-btn-prev btn--carousel-nav-prev"
+          noSizeClass={true}
           aria-label="Previous slide"
         />
         
@@ -95,6 +96,7 @@ const Carousel = ({ posts = [], title = "Latest LinkedIn Posts" }) => {
           disabled={!canGoNext}
           onClick={goToNextSlide}
           className="carousel-btn-next"
+          noSizeClass={true}
           aria-label="Next slide"
         />
       </div>

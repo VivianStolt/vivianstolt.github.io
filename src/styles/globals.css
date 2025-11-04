@@ -1,5 +1,54 @@
+@import './intro.css';
+@import './about.css';
+@import './projects.css';
+/* Global import for Button component styles so buttons render consistently */
+@import '../components/Button.css';
+
+/* Montserrat family (local / bundled TTFs) */
+@font-face {
+  font-family: 'Montserrat';
+  src: local('Montserrat Black'), local('Montserrat-Black'),
+       url('../assets/fonts/Montserrat-Black.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Montserrat';
+  src: local('Montserrat Bold'), local('Montserrat-Bold'),
+       url('../assets/fonts/Montserrat-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Montserrat';
+  src: local('Montserrat Medium'), local('Montserrat-Medium'),
+       url('../assets/fonts/Montserrat-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Montserrat';
+  src: local('Montserrat Regular'), local('Montserrat-Regular'),
+       url('../assets/fonts/Montserrat-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Vivin Font';
+  src: url('../assets/fonts/VivinFont.woff') format('woff');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
-  --font-family: 'Karla', sans-serif;
+  --font-sans: 'Montserrat', Montserrat, sans-serif;
+  --font-vivi: 'Vivin Font', 'Montserrat', 'Karla', sans-serif;
   --line-height: 1.3em;
   --small-gap: 1rem;
   --semi-small-gap: 1.5rem;
@@ -7,8 +56,8 @@
   --large-gap: 3rem;
   --extra-large-gap: 4rem;
   --tumma-sininen: #0D62B2;
-  --keski-sininen: #B7DDFB;
-  --vaalea-sininen: #EEF3FB;
+  --keski-sininen: #3D99F0;
+  --vaalea-sininen: #B7DDFB;
   --tumma-sininen-35: rgba(13, 98, 178, 0.35);
   --keski-sininen-15: rgba(183, 221, 251, 0.15);
   --vaalea-sininen-15: rgba(238, 243, 251, 0.15);
@@ -25,18 +74,68 @@
 }
 
 body {
-  max-width: 1200px;
+  max-width: 1440px;
   justify-self: center;
-  background-color: #00122C;
+  background-color: black;
   margin: 0 auto;
   padding: 20px;
-  font-family: var(--font-family);
+  font-family: var(--font-sans);
   line-height: var(--line-height);
   color: var(--vaalea-sininen);
+  min-width: 320px;
 }
 
 #root {
   min-height: 100vh;
+}
+
+input::placeholder {
+  color: var(--keski-sininen);
+  opacity: 0.6; /* Override default opacity in some browsers */
+}
+
+input:focus-visible {
+  outline: 2px solid var(--keski-sininen);
+  outline-offset: 2px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  color: var(--keski-sininen);
+}
+
+h1 {
+  font-family: var(--font-sans);
+  font-weight: 900;
+  font-size: clamp(1.1rem, 3vw, 2.25rem);
+  letter-spacing: 0.1em;
+  line-height: 1.1em;
+  text-transform: uppercase;
+}
+
+h2 {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: clamp(0.9rem, 3vw, 1.5rem);
+  letter-spacing: 0.05em;
+  line-height: 1em;
+  text-transform: uppercase;
+}
+
+h3 {
+  font-family: var(--font-sans);
+  font-style: normal;
+  font-weight: 700;
+  font-size: clamp(0.75rem, 3vw, 1rem);
+  letter-spacing: 0.05em;
+  line-height: 1.2em;
+}
+
+p {
+  margin: 0;
+  color: var(--vaalea-sininen);
+  font-size: clamp(0.75rem, 2vw, 1rem);
+  line-height: 1.2em;
 }
 
 /* Gooey filter for carousel dots */
@@ -57,15 +156,16 @@ body {
 
 .video-bg {
   position: absolute;
+  inset: 0; /* top:0; right:0; bottom:0; left:0; */
+  width: 100%;
+  height: auto;
+  object-fit: cover; /* crop but keep aspect ratio */
+  object-position: center center;
+  filter: brightness(0.9);
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  min-width: 100%;
-  min-height: 100%;
-  width: auto;
-  height: auto;
-  object-fit: cover;
-  filter: brightness(0.9);
+  min-width: 320px;
 }
 
 .video-overlay {
@@ -73,6 +173,7 @@ body {
   inset: 0;
   background: rgba(255,255,255,0.03);
 }
+
 
 /* Sections layout matching the design: six 100vh areas with 64px scrub gaps in between */
 .sections-root {
@@ -96,7 +197,6 @@ body {
 }
 
 .vs-inner {
-  background: rgba(255, 255, 255, 0.05);
   padding: var(--padding-keski);
   border-radius: 8px;
   text-align: center;
@@ -109,14 +209,14 @@ body {
   max-width: 1200px;
 }
 
-.vs-intro .vs-inner {
-  height: 100%;
-  background: none;
-  overflow: visible;
-  gap: 64px;
-  .liquidGlass-effect { display: none; }
+.half-banner {
+  width: 50%;
+  flex-direction: column;
+  display: flex;
+  align-items: flex-start;
+  text-align: left;
+  gap: var(--small-gap);
 }
-
 
 .liquidGlass-effect {
   position: absolute;
@@ -124,12 +224,12 @@ body {
   backdrop-filter: blur(3px);
   overflow: hidden;
   filter: url(#glass-distortion);
+  z-index: -1;
 }
 
 .liquidGlass-content {
   position: relative;
   z-index: 1;
-  width: 50%;
   text-align: left;
 }
 
@@ -139,22 +239,184 @@ body {
   color: var(--tumma-sininen);
 }
 
+/* Nimeämiset*/
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.align-top {
+  align-items: flex-start;
+  text-align: top;
+}
+
+.align-bottom {
+  align-items: flex-end;
+  text-align: bottom;
+}
+
+.align-left {
+  align-items: flex-start;
+  text-align: left;
+}
+
+.align-right {
+  align-items: flex-end;
+  text-align: right;
+}
+
+.align-center {
+  align-items: center;
+  text-align: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.small-gap {
+  gap: var(--small-gap);
+}
+
+.semi-gap {
+  gap: var(--semi-small-gap);
+}
+
+.large-gap {
+  gap: var(--large-gap);
+}
+
+.scale-gap {
+  gap: clamp(1.5rem, 1vw, 4rem);
+}
+
+.padding-pieni {
+  padding: var(--padding-pieni);
+}
+
+.padding-keski {
+  padding: var(--padding-keski);
+}
+
+.topbot-padding-keski {
+  padding-top: var(--padding-keski);
+  padding-bottom: var(--padding-keski);
+}
+
+.topbot-padding-small {
+  padding-top: var(--padding-pieni);
+  padding-bottom: var(--padding-pieni);
+}
+
+.leftright-padding-keski {
+  padding-left: var(--padding-keski);
+  padding-right: var(--padding-keski);
+}
+
+.leftright-padding-small {
+  padding-left: var(--padding-pieni);
+  padding-right: var(--padding-pieni);
+}
+
+.scale-padding {
+  padding: clamp(1rem, 2vw, 4rem);
+}
+
+.radius-keski {
+  border-radius: var(--keski-border-radius);
+}
+
+.over-flow-hidden {
+  overflow: hidden;
+}
+
+.fill-width {
+  width: 100%;
+}
+
+.half-width {
+  width: 50%;
+}
+
+.height-fit {
+  height: fit-content;
+}
+
+.container-dark {
+    background: rgba(0, 0, 0, 0.6);
+    position: relative;
+}
+
+@media (max-width: 1200px) {
+  .video-bg-wrapper {
+    left: -10rem;
+  }
+}
+
 /* Responsive gap adjustments for smaller screens as requested */
 @media (max-width: 800px) {
   .vs-section.vs-scrub { height: calc(25vh + 34px); }
+
+  .video-bg-wrapper {
+    left: -10rem;
+  }
+
+  /* Reduce body padding on smaller screens so padding + child widths
+     don't create horizontal overflow */
+  body {
+    padding: var(--padding-pieni);
+  }
+
+  /* Make inner containers respect viewport width and include padding
+     in their sizing (defensive) */
+  .vs-inner {
+    padding: var(--padding-pieni);
+    box-sizing: border-box;
+    width: calc(100% - (2 * var(--padding-pieni)));
+    max-width: 100%;
+  }
+
+  /* Ensure images never exceed their container on small screens */
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* Defensive: prevent accidental horizontal overflow from layout children */
+  .sections-root, .vs-section, .vs-inner {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+}
+
+@media (max-width: 600px) {
+  .video-bg-wrapper {
+    left: -4rem;
+  }
+
+  .video-bg {
+    width: 130%;
+    left: 30%;
+    top: 30%;
+  }
 }
 
 @media (max-width: 420px) {
   .vs-section.vs-scrub { height: calc(25vh + 24px); }
 }
 
+
 /* Animated headline: reveal words one-by-one */
 .animated-headline {
   display: inline-block;
   line-height: 1.05;
-  font-size: 2.25rem;
   font-weight: 700;
-  color: inherit;
   white-space: pre-wrap;
   overflow: visible;
 }
@@ -184,14 +446,6 @@ body {
   }
 }
 
-/* CSS-only headline: animate span children on load with staggered delays (nth-child) */
-.animated-headline.css-only {
-  display: inline-block;
-  line-height: 1.05;
-  font-size: 2.25rem;
-  font-weight: 700;
-  color: inherit;
-}
 
 .animated-headline.css-only span {
   display: inline-block;
