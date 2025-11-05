@@ -45,10 +45,16 @@ export async function loadProjects() {
         });
       }
       if (!found) {
-        const base = coverName.replace(/\.[^.]+$/, '');
+        const base = String(coverName).replace(/\.[^.]+$/, '');
+        // try matching by base name without extension and allow prefix/contains match
         found = imgs.find(i => {
-          const name = String(i).split('/').pop() || '';
-          return name.replace(/\.[^.]+$/, '') === base;
+          try {
+            const name = String(i).split('/').pop() || '';
+            const baseName = name.replace(/\.[^.]+$/, '');
+            return baseName === base || baseName.startsWith(base) || baseName.includes(base);
+          } catch (e) {
+            return false;
+          }
         });
       }
       p.cover = found || imgs[0] || '';
