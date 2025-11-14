@@ -7,6 +7,10 @@
 
 .vs-intro .vs-inner .half-banner {
   background: rgba(0, 0, 0, 0);
+  h3 {
+      color: var(--vaalea-sininen);
+      font-weight: normal;
+  }
   .liquidGlass-effect {
     display: none;
   }

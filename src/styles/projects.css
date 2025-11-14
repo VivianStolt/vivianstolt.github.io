@@ -405,6 +405,11 @@ input.search-input {
   min-width: 330px;
 }
 
+.gallery-item:hover {
+  transform: scale(0.99);
+  transition: transform 200ms;
+}
+
 
 
 .close-btn {
@@ -428,58 +433,77 @@ input.search-input {
 .project-modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.9);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 3000;
+  backdrop-filter: blur(22.85px);
 }
 
 .project-modal {
-  width: min(1000px, 96%);
+  width: 100%;
   max-height: 90vh;
   overflow: auto;
-  background: var(--bg-panel);
-  border-radius: 10px;
   display: flex;
   gap: 1rem;
   position: relative;
+  flex-direction: column;
+  height:fit-content;
+  max-width: 1200px;
+  margin-top: 8rem;
+}
+
+.modal-extra {
+    display: flex;
+    flex-direction: column;
+    gap: var(--large-gap);
 }
 
 .modal-close {
   position: absolute;
   right: 12px;
   top: 12px;
-  background: transparent;
   border: none;
-  font-size: 1.3rem;
   cursor: pointer;
-  color: var(--muted);
   padding: 6px 8px;
-  border-radius: 6px;
+  background: transparent;
 }
 
-.modal-close.visible {
-  background: rgba(0, 0, 0, 0.25);
-  color: #fff;
-  border: 1px solid rgba(255, 255, 255, 0.06);
+.modal-meta {
+    display: flex;
+    flex-direction: column;
+    gap: var(--extra-small-gap);
+}
+
+.modal-tags {
+    height: fit-content;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--small-gap) var(--extra-small-gap);
+    margin-top: var(--extra-small-gap);
+}
+
+.modal-year {
+    opacity: 0.6;
 }
 
 .modal-media {
-  width: 45%;
+  width: 100%;
   background-size: cover;
   background-position: center;
-  min-height: 320px;
+  height: auto;
+  aspect-ratio: 5 / 3;
 }
 
 .modal-body {
   padding: 1rem;
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--extra-large-gap);
 }
 
-.modal-meta h2 {
-  margin: 0 0 0.4rem 0;
-}
 
 /* -----------------------------
    Slider section (metadata-driven)

@@ -146,7 +146,7 @@ function App() {
                 <span>FRONT-END</span>
                 <span>DEVELOPMENT</span>
               </h1>
-              <p className="slide-in-right">Designing intuitive experiences that build trust between people and technology</p>
+              <h3 className="slide-in-right">Designing intuitive experiences that build trust between people and technology</h3>
             </div>
             {/* Decorative falling cards placed behind the intro content */}
             {/*<FallingCards

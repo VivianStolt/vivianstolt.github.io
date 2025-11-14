@@ -7,24 +7,55 @@
   "tags": ["problem solving", "ux-research", "figma", "workshop development", "human-computer interaction research"],
   "sections": [
     {
-      "type": "slider",
-      "slides": [
+      "type": "wheel",
+      "heading": "How to design human-centred work tools for uncertain industrial future?",
+      "center": {
+        "title": "HCD Process Plan",
+        "text": "Our research question was \"How to design human-centred work tools for an uncertain industrial future?\". My task was to develop a method for designing adaptable, intuitive, and effective work tools for future industrial users. My colleagues and I created a Human-Centred Design methodology, extending beyond standard HCD (ISO 2019) to account for future changes. To address Industry 5.0 uncertainties, we emphasized workers' active involvement through participatory design methods."
+      },
+      "items": [
         {
-          "title": "Frame 101.png",
-          "text": "A short introduction to the project goals and approach.",
-          "image": "Frame 101.png"
+          "key": "context",
+          "title": "Futures wheel workshop: context",
+          "text": "Human-Centred Design (HCD) starts with understanding context using methods like field or diary studies. We adapted Glenn's Futures Wheel (1972) through Farrow's (2022) approach to develop a workshop. This study employs participatory, action-oriented methods and qualitative workshop data to explore future scenarios, prioritize actions, and assess potential consequences. The Futures Wheel reveals multiple levels of consequences from various changes."
         },
         {
-          "title": "Workshops",
-          "text": "Run workshops to collect employee needs and pain points.",
-          "image": "workshop.png"
+          "key": "userneeds",
+          "title": "Semi-structured interviews: context & user needs",
+          "text": "In the second phase of the HCD process, the goal is to understand user needs and develop previous insights. I used traditional semi-structured interviews to grasp maritime workers' current conditions and personalities. This approach helps empathize with their experiences and envision future scenarios."
         },
         {
-          "title": "Prototypes",
-          "text": "Low-fidelity prototypes explored interaction patterns for autonomous helpers.",
-          "image": "Electrician4.png"
+          "key": "design",
+          "title": "Scenario storyboards: design",
+          "text": "In the third phase of the HCD process, design solutions are produced. My goal was to review and integrate results from the previous stages into scenarios that meet user needs. My team and I evaluated and refined my drafts. By visualizing these scenarios and expressing user emotions, I aimed to demonstrate how they create a positive user experience."
+        },
+        {
+          "key": "evaluation",
+          "title": "Scenario analysis: evaluation",
+          "text": "In the final phase of the HCD process, the design is evaluated with stakeholders. I brought key stakeholders together to review and assess the scenarios. We evaluated their relevance to decide whether to restart the process or iterate from a specific intermediate stage."
+        },
+        {
+          "key": "arrows",
+          "title": "HCD process flow",
+          "text": "Directional arrows and flow visualisation for the HCD cycle."
         }
       ]
+    },
+    {
+      "type": "text-carousel",
+      "textPosition": "left",
+      "heading": "Futures Wheel Workshop",
+      "text": "I led a Futures Wheel workshop (Glenn, 1972; Farrow, 2022) as part of a mission planning user research project to anticipate the future consequences of remotely operating autonomous ships across technical, ethical, environmental, and sociopolitical domains. Drawing inspiration from Farrow’s study on AI in workplaces, we applied the structured Futures Wheel method to explore both positive and negative outcomes. My team and I first defined six macro themes based on maritime stakeholder data and set a five-year timeframe to envision human-centred mission planning. <br> During the workshop, which I introduced and co-facilitated with colleagues, participants from two countries collaborated via Microsoft Teams and Miro in small groups to map first-, second-, and third-level consequences—categorizing them as improvements, risks, or user needs. The results informed subsequent research methods, including semi-structured interviews, affinity diagrams, and storyboards, helping us build a shared understanding of future mission planning contexts.",
+      "images": ["Workshop.png", "key.png", "positive.png", "exampleWheel.png"],
+      "intervalMs": 3500
+    },
+    {
+      "type": "text-carousel",
+      "textPosition": "right",
+      "heading": "Semi-structured interviews",
+      "text": "Building on insights from the Futures Wheel workshop, I conducted and co-designed semi-structured interviews to explore how a new mission planning tool fits early adopters of remote ship operation technologies. Together with my colleagues, I structured the interviews around key workflow scenarios such as communication and connection loss, interviewing six employees from a ship operator company. To support understanding, I created a visual map of two harbors and used chess pieces and 3D-printed ships to help participants simulate real tasks and stakeholder interactions. I then analyzed the data using an Affinity Diagram, color-coding responses to identify patterns and align future workflow designs with employees’ perspectives.",
+      "images": ["interview.png", "nappulat.png", "iteration.png", "haastateltavat.png"],
+      "intervalMs": 3500
     }
   ]
 }

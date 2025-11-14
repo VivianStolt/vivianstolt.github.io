@@ -4,6 +4,7 @@ import HorizontalScroller from './HorizontalScroller';
 import ProjectModal from './ProjectModal';
 import NewToOld from '../assets/icons/NewToOld.svg';
 import OldToNew from '../assets/icons/OldToNew.svg';
+import X from '../assets/icons/X.svg';
 
 const CATEGORIES = [
   { key: null, label: 'All', matchTags: [] },
@@ -110,7 +111,9 @@ export default function Gallery({ projects = [], initialCategory = null, onClose
                 >
                   <img src={sortOrder === 'newest' ? NewToOld : OldToNew} alt="sort icon" style={{ width: 30, height: 30 }} />
                 </button>
-                <button className="close-btn visible" onClick={onClose} aria-label="Close gallery">✕</button>
+                <button className="close-btn visible" onClick={onClose} aria-label="Close gallery">
+                  <img src={X} alt="Close" className="modal-close-icon" style={{ width: 24, height: 24 }}/>
+                </button>
 
             </div>
       

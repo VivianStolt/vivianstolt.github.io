@@ -50,6 +50,7 @@
   --font-sans: 'Montserrat', Montserrat, sans-serif;
   --font-vivi: 'Vivin Font', 'Montserrat', 'Karla', sans-serif;
   --line-height: 1.3em;
+  --extra-small-gap: 0.5rem;
   --small-gap: 1rem;
   --semi-small-gap: 1.5rem;
   --medium-gap: 2rem;
@@ -107,7 +108,7 @@ h1, h2, h3, h4, h5, h6 {
 h1 {
   font-family: var(--font-sans);
   font-weight: 900;
-  font-size: clamp(1.1rem, 3vw, 2.25rem);
+  font-size: clamp(1.1rem, 3vw, 2.8rem);
   letter-spacing: 0.1em;
   line-height: 1.1em;
   text-transform: uppercase;
@@ -116,7 +117,7 @@ h1 {
 h2 {
   font-family: var(--font-sans);
   font-weight: 700;
-  font-size: clamp(0.9rem, 3vw, 1.5rem);
+  font-size: clamp(0.9rem, 3vw, 1.8rem);
   letter-spacing: 0.05em;
   line-height: 1em;
   text-transform: uppercase;
@@ -126,7 +127,7 @@ h3 {
   font-family: var(--font-sans);
   font-style: normal;
   font-weight: 700;
-  font-size: clamp(0.75rem, 3vw, 1rem);
+  font-size: clamp(0.75rem, 3vw, 1.5rem);
   letter-spacing: 0.05em;
   line-height: 1.2em;
 }
@@ -210,7 +211,7 @@ p {
 }
 
 .half-banner {
-  width: 50%;
+  width: 65%;
   flex-direction: column;
   display: flex;
   align-items: flex-start;
